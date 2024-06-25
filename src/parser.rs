@@ -11,12 +11,12 @@ crate::static_selector! {
 
 #[derive(Serialize)]
 pub(crate) struct Car {
-    make: String,
-    year: u16,
-    name: String,
-    drivetrain: String,
-    power: u16,
-    weight: u16,
+    pub make: String,
+    pub year: u16,
+    pub name: String,
+    pub drivetrain: String,
+    pub power: u16,
+    pub weight: u16,
 }
 
 impl Car {
