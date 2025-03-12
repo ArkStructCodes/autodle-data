@@ -1,4 +1,5 @@
 use std::str::FromStr;
+use std::time::Duration;
 
 pub(crate) use once_cell::sync::Lazy;
 pub(crate) use scraper::Selector;
@@ -20,10 +21,16 @@ macro_rules! static_selector {
     };
 }
 
-static AGENT: Lazy<Agent> = Lazy::new(Agent::new);
+static AGENT: Lazy<Agent> = Lazy::new(|| {
+    let config = Agent::config_builder()
+        .timeout_global(Some(Duration::from_secs(30)))
+        .build();
+
+    config.into()
+});
 
 pub(crate) fn scrape_url(url: &str) -> Result<Html> {
-    let contents = AGENT.get(url).call()?.into_string()?;
+    let contents = AGENT.get(url).call()?.body_mut().read_to_string()?;
     Ok(Html::parse_document(&contents))
 }
 
