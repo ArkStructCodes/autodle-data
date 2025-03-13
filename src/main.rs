@@ -40,10 +40,11 @@ fn main() -> Result<()> {
                 || car.make == "Penhall"
                 || car.make == "Funco Motorsports"
                 || car.make == "Hot Wheels"
-                || car.make.contains("Universal"))
+                || car.make.contains("Universal")
                 || car.make.contains("Racing")
                 || car.name.contains(['#', '\'', '"'])
                 || car.name.contains("Concept")
+                || car.name.contains("Hot Wheels")
                 || car.name.contains("Raid")
                 || car.name.contains("W154")
                 || car.name.contains("Baja")
@@ -55,7 +56,7 @@ fn main() -> Result<()> {
                 || car.name.contains("Singer")
                 || car.name.contains("Gunther Werks")
                 || car.name.contains("Mission R")
-                || car.name.contains("ARX")
+                || car.name.contains("ARX"))
         })
         .collect::<Vec<_>>();
 
